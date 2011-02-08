@@ -11,10 +11,8 @@ DEFILES += DEBUG
 
 # Input
 SOURCES += src/main.cpp \
-		src/testclass.cpp \
 
 HEADERS += include/global.h \
 		include/defines.h \
-		include/testclass.h  \
 
 message("beta project built")
