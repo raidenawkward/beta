@@ -1,7 +1,15 @@
 #!/bin/bash
-#script that run test program
-#create by raiden on 20110208
+# script	: test.sh
+# discript	: test executable program in project by gdb
+# author	: raiden
+# date		: 2011-02-08
+# version	: 0.1.0
+#
 
-CURRENT_PATH=`pwd`
+EXEC=test
+TEST_DIR=`pwd`/bin
 
-$CURRENT_PATH/bin/test
+echo executing $EXEC in $TEST_DIR
+
+cd $TEST_DIR
+gdb $EXEC $PARAM_LIST

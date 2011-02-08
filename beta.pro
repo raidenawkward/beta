@@ -3,9 +3,18 @@
 ######################################################################
 
 TEMPLATE = app
-TARGET = bin/test 
+TARGET = test 
 DEPENDPATH += . src
 INCLUDEPATH += .
+DESTDIR = bin
+DEFILES += DEBUG
 
 # Input
-SOURCES += src/main.cpp
+SOURCES += src/main.cpp \
+		src/testclass.cpp \
+
+HEADERS += include/global.h \
+		include/defines.h \
+		include/testclass.h  \
+
+message("beta project built")
