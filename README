@@ -3,3 +3,6 @@ basic data structure
 raiden
 20110208
 #####################################################
+
+framework:
+global.h -- global setting for structures
