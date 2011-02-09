@@ -11,8 +11,10 @@ DEFILES += DEBUG
 
 # Input
 SOURCES += src/main.cpp \
+		src/linerlistbase.cpp \
 
 HEADERS += include/global.h \
+		include/linerlistbase.h  \
 		include/defines.h \
 
 message("beta project built")

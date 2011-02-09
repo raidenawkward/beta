@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define TEST
+#ifndef TEST
 int main(int argc, char** argv)
 {
 	for (int i = 0; i < argc; ++i)
@@ -7,3 +9,4 @@ int main(int argc, char** argv)
 		printf("inputed : %s\n",argv[i]);
 	}
 }
+#endif
