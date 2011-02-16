@@ -11,9 +11,11 @@ DEFILES += DEBUG
 
 # Input
 SOURCES += src/main.cpp \
+		src/linklistnodebases.cpp \
 		src/linerlistbase.cpp \
 
 HEADERS += include/global.h \
+		include/linklistnodebases.h  \
 		include/linerlistbase.h  \
 		include/defines.h \
 

@@ -1,6 +1,6 @@
 /*
  * class        : LinerListBase
- * discript     : base liner table
+ * description  : base liner table
  * author       : Raiden
  * date         : 2011-02-09
  * version      : 1.1.1
@@ -36,7 +36,7 @@ public:
 	int lastLocation(const T elem);
 	void set(int index, const T elem);
 	bool insert(int position, const T elem);
-	void append(const T elem);
+	void append(const T& elem);
 	void append(const T* elems, int length);
 	void append(const LinerListBase<T>& list);
 	void remove(int position, int n);

@@ -6,3 +6,6 @@ raiden
 
 framework:
 global.h -- global setting for structures
+linerlistbase.h -- sequence list support
+					problems with 'operator ='
+linklistnodebases.h -- link list (includes simple linked list and double linked list)

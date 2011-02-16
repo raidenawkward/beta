@@ -13,7 +13,7 @@ PROJECT_NAME="beta"
 PROJECT_TYPE="qmake"
 SRC_DIR="src"
 INC_DIR="include"
-AUTO_MAKE_TOOL="qmake-qt4"
+AUTO_MAKE_TOOL="qmake"
 
 if [ -z $1 ];
 then
@@ -45,7 +45,7 @@ CLASS_DISCRIPTION=$3
 
 CLASS_CONTENT="/*
  * class        : $CLASS_NAME
- * discript     : $CLASS_DISCRIPTION
+ * description  : $CLASS_DISCRIPTION
  * author       : $CLASS_AUTHOR
  * date         : `date +%Y-%m-%d`
  * version      : $CLASS_ORIGIN_VERSION

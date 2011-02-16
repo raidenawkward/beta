@@ -169,7 +169,7 @@ bool LinerListBase<T>::insert(int pos, const T item)
 }
 
 template <class T>
-void LinerListBase<T>::append(const T elem)
+void LinerListBase<T>::append(const T& elem)
 {
 	this->insert(_length,elem);
 }
@@ -280,6 +280,7 @@ void LinerListBase<T>::reserve(int size)
 }
 
 /// main function for test
+/*
 #include<stdio.h>
 int main()
 {
@@ -287,10 +288,11 @@ int main()
 	list.append(1);
 	list.append(2);
 	list.append(3);
-	list.remove(0,3);
+	//list.remove(0,3);
 	for (int i = 0; i < list.length(); ++i)
 	{
 		printf("elem : %d is %d\n",i,list.getElement(i));
 	}
 	return 0;
 }
+*/
