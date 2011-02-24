@@ -20,10 +20,11 @@ public:
 	LinkListBase(void);
 
 	/// charas
-	LinkListNode& getHead();/*< returns the head node of list*/
-	LinkListNode& getTail();/*< returns the tail node of list*/
-	LinkListNode& getNext();
-	LinkListNode& getCurrent();
+        LinkListNode* getHead();/*< returns the head node of list*/
+        LinkListNode* getTail();/*< returns the tail node of list*/
+        LinkListNode* getNext();
+        LinkListNode* getCurrent();
+        LinkListNode* at(int i);
 	int count();
 	int currentIndex();
 	bool atFirst();
@@ -35,26 +36,26 @@ public:
 	bool removeFirst();
 	bool removeLast();
 
-	bool setCurrentNode(LinkListNode& newnode);
-	bool insertFirst(LinkListNode& node);
-	bool insertAt(int index, LinkListNode& node);
-	bool append(LinkListNode& node);
+        bool setCurrentNode(LinkListNode* newnode);
+        void insertFirst(LinkListNode* node);
+        bool insertAt(int index, LinkListNode* node);
+        void append(LinkListNode* node);
 
 	bool removeAt(int i);
-	bool removeFrom(int i);
-	bool removeBefore(int i);
 
 	int firstIndexOf(const T data);
 	int lastindexOf(const T data);
 
+        void moveToNextNode();
+        void moveToPriorNode();
+
 protected:
 	void freeNode(LinkListNode* node);
-private:
-	void moveToNextNode();
-	void moveToLastNode();
+
 private:
 	int _count;
 	int _index;
 	LinkListNode* _head;
 	LinkListNode* _tail;
+        LinkListNode* _current;
 };

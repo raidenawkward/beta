@@ -29,6 +29,7 @@ SimpleLinkedListNodeBase<T>::~SimpleLinkedListNodeBase()
 {
 	_node = NULL;
 	_next = NULL;
+        delete this->_node;
 }
 
 template <class T>
@@ -67,7 +68,8 @@ SimpleLinkedListNodeBase<T> SimpleLinkedListNodeBase<T>::operator = (const Simpl
 template <class T>
 DoubleLinkedListNodeBase<T>::DoubleLinkedListNodeBase()
 						:SimpleLinkedListNodeBase<T>(),
-						_prior(NULL)
+                                                _prior(NULL),
+                                                _next(NULL)
 {
 
 };
@@ -75,7 +77,8 @@ DoubleLinkedListNodeBase<T>::DoubleLinkedListNodeBase()
 template <class T>
 DoubleLinkedListNodeBase<T>::DoubleLinkedListNodeBase(T& node, DoubleLinkedListNodeBase<T>* next, DoubleLinkedListNodeBase<T>* prior)
 					: SimpleLinkedListNodeBase<T>(node,next),
-					  _prior(prior)
+                                          _prior(prior),
+                                          _next(next)
 {
 
 }
@@ -85,6 +88,7 @@ DoubleLinkedListNodeBase<T>::DoubleLinkedListNodeBase(const DoubleLinkedListNode
 						:SimpleLinkedListNodeBase<T>(copy)
 {
 	_prior = copy.priorNode();
+        this->_next = copy.nextNode();
 }
 
 template <class T>
@@ -94,14 +98,26 @@ DoubleLinkedListNodeBase<T>* DoubleLinkedListNodeBase<T>::priorNode()
 }
 
 template <class T>
+DoubleLinkedListNodeBase<T>* DoubleLinkedListNodeBase<T>::nextNode()
+{
+        return _next;
+}
+
+template <class T>
 void DoubleLinkedListNodeBase<T>::setPriorNode(DoubleLinkedListNodeBase<T>* prior)
 {
 	_prior = prior;
 }
 
+template <class T>
+void DoubleLinkedListNodeBase<T>::setNextNode(DoubleLinkedListNodeBase<T>* next)
+{
+        this->_next = next;
+}
+
 
 /// main function for test
-
+#ifdef TEST_LINKEDLISTNODEBASE
 #include <stdio.h>
 
 int main(int argc, char** argv)
@@ -110,4 +126,4 @@ int main(int argc, char** argv)
 	SimpleLinkedListNodeBase<int> node(data);
 	printf("node data : %d\n",node.data());
 }
-
+#endif

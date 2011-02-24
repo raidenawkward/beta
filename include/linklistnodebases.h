@@ -56,9 +56,12 @@ public:
 
 	/// charas
 	DoubleLinkedListNodeBase<T>* priorNode();
+        DoubleLinkedListNodeBase<T>* nextNode();
 
 	/// operations
 	void setPriorNode(DoubleLinkedListNodeBase<T>* prior);
+        void setNextNode(DoubleLinkedListNodeBase<T>* next);
 private:
 	DoubleLinkedListNodeBase<T>* _prior;
+        SimpleLinkedListNodeBase<T>* _next;
 };
