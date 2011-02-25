@@ -1,5 +1,5 @@
 #include "../include/linklistbase.h"
-
+#include "linklistnodebases.cpp"
 template <class T>
 LinkListBase<T>::LinkListBase()
     :_count(0),
@@ -12,39 +12,40 @@ LinkListBase<T>::LinkListBase()
 }
 
 template <class T>
-LinkListNode* LinkListBase<T>::getHead()
+__LinkListNode* LinkListBase<T>::getHead()
 {
     return this->_head;
 }
 
 template <class T>
-LinkListNode* LinkListBase<T>::getTail()
+__LinkListNode* LinkListBase<T>::getTail()
 {
     return this->_tail;
 }
 
 template <class T>
-LinkListNode* LinkListBase<T>::getNext()
+__LinkListNode* LinkListBase<T>::getNext()
 {
     return this->_current->nextNode();
 }
 
 template <class T>
-LinkListNode* LinkListBase<T>::getCurrent()
+__LinkListNode* LinkListBase<T>::getCurrent()
 {
     return this->_current;
 }
-
+#include <stdio.h>
 template <class T>
-LinkListNode* LinkListBase<T>::at(int i)
+__LinkListNode* LinkListBase<T>::at(int i)
 {
     if (i < 0 || i > _count -1)
+    {
         return NULL;
-
+    }
     if (i < _count/2)
     {
         int index = 0;
-        LinkListNode* tmp_node = _head;
+        __LinkListNode* tmp_node = _head;
 
         while (i != index)
         {
@@ -55,8 +56,9 @@ LinkListNode* LinkListBase<T>::at(int i)
     }
     else
     {
-        int index = _count;
-        LinkListNode* tmp_node = _tail;
+        int index = 1;
+        __LinkListNode* tmp_node = _tail;
+
         while (i != _count - index)
         {
             tmp_node = tmp_node->priorNode();
@@ -148,7 +150,7 @@ bool LinkListBase<T>::removeLast()
 }
 
 template <class T>
-bool LinkListBase<T>::setCurrentNode(LinkListNode* newnode)
+bool LinkListBase<T>::setCurrentNode(__LinkListNode* newnode)
 {
     if (!newnode)
         return false;
@@ -160,20 +162,41 @@ bool LinkListBase<T>::setCurrentNode(LinkListNode* newnode)
 }
 
 template <class T>
-void LinkListBase<T>::insertFirst(LinkListNode* node)
+void LinkListBase<T>::insertFirst(__LinkListNode* node)
 {
+    if (!node)
+        return;
+    if (_count == 0)
+    {
+        _head = node;
+        _tail = node;
+        _current = node;
+        ++_count;
+        return;
+    }
     ++count;
+    node->setNextNode(_head);
     _head->setPriorNode(node);
-    _head = _head->priorNode();
+    _head = node;
 }
 
 template <class T>
-bool LinkListBase<T>::insertAt(int index, LinkListNode* node)
+bool LinkListBase<T>::insertAt(int index, __LinkListNode* node)
 {
+    if (!node)
+        return false;
     if (index < 0 || index >= _count)
         return false;
 
-    LinkListNode* tmp_node = this->at(index);
+    if (_count == 0)
+    {
+        _head = node;
+        _tail = node;
+        _current = node;
+        ++_count;
+        return true;
+    }
+    __LinkListNode* tmp_node = this->at(index);
     node->setNextNode(tmp_node);
     node->setPriorNode(tmp_node->priorNode());
     tmp_node->setPriorNode(node);
@@ -181,11 +204,22 @@ bool LinkListBase<T>::insertAt(int index, LinkListNode* node)
 }
 
 template <class T>
-void LinkListBase<T>::append(LinkListNode* node)
+void LinkListBase<T>::append(__LinkListNode* node)
 {
-    ++count;
+    if (!node)
+        return;
+    if (_count == 0)
+    {
+        _head = node;
+        _tail = node;
+        _current = node;
+        ++_count;
+        return;
+    }
+    ++_count;
+    node->setPriorNode(_tail);
     _tail->setNextNode(node);
-    _tail = _tail->nextNode();
+    _tail = node;
 }
 
 template <class T>
@@ -193,7 +227,7 @@ bool LinkListBase<T>::removeAt(int i)
 {
     if (i < 0 || i > _count -1)
         return false;
-    LinkListNode* tmp_node = this->at(i);
+    __LinkListNode* tmp_node = this->at(i);
     tmp_node->nextNode()->setPriorNode(tmp_node->priorNode());
     tmp_node->priorNode()->setNextNode(tmp_node->nextNode());
     freeNode(tmp_node);
@@ -207,7 +241,7 @@ int LinkListBase<T>::firstIndexOf(const T data)
     int ret = 0;
     if (this->isEmpty())
         return -1;
-    LinkListNode* tmp_node = _head;
+    __LinkListNode* tmp_node = _head;
     while (ret < _count)
     {
         if (tmp_node->data() == data)
@@ -223,7 +257,7 @@ int LinkListBase<T>::lastindexOf(const T data)
     int ret = _count;
     if (this->isEmpty())
         return -1;
-    LinkListNode* tmp_node = _tail;
+    __LinkListNode* tmp_node = _tail;
     while (ret >= 0)
     {
         if (tmp_node->data() == data)
@@ -252,20 +286,46 @@ void LinkListBase<T>::moveToPriorNode()
 }
 
 template <class T>
-void LinkListBase<T>::freeNode(LinkListNode* node)
+void LinkListBase<T>::freeNode(__LinkListNode* node)
 {
     if (!node)
         return;
     delete node;
 }
 
+template <class T>
+void LinkListBase<T>::traverse()
+{
+    printf("traverse : \n");
+    int index = 0;
+    __LinkListNode* tmp_node = _head;
+
+    while (_count != index)
+    {
+        printf("node %d   [%d]  %d  [%d]\n",index,tmp_node->priorNode(),tmp_node,tmp_node->nextNode());
+        tmp_node = tmp_node->nextNode();
+        ++index;
+    }
+}
+
 /// main function for test
 #define TEST_LINKLIST
 #ifdef TEST_LINKLIST
 #include <stdio.h>
-
+#include <string.h>
 int main()
 {
+    LinkListBase<int> linklist;
+
+    LinkListNode<int> *node = new LinkListNode<int>(1,NULL,NULL);
+    LinkListNode<int> *node2 = new LinkListNode<int>(2,NULL,NULL);
+    LinkListNode<int> *node3 = new LinkListNode<int>(3,NULL,NULL);
+    linklist.append(node);
+    linklist.append(node2);
+    linklist.append(node3);
+
+    for (int i = 0; i < linklist.count(); ++i)
+        printf("index %d : %d\n",i,linklist.at(i)->data());
     return 0;
 }
 #endif

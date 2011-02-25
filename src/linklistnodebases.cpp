@@ -4,16 +4,15 @@
 
 template <class T>
 SimpleLinkedListNodeBase<T>::SimpleLinkedListNodeBase()
-			:_node(NULL),
-			_next(NULL)
+    :_next(NULL)
 {
 
 }
 
 template <class T>
-SimpleLinkedListNodeBase<T>::SimpleLinkedListNodeBase(T& node, SimpleLinkedListNodeBase<T>* next)
+SimpleLinkedListNodeBase<T>::SimpleLinkedListNodeBase(T node, SimpleLinkedListNodeBase<T>* next)
 {
-	_node = &node;
+        _node = node;
 	_next = next;
 }
 
@@ -41,13 +40,19 @@ SimpleLinkedListNodeBase<T>* SimpleLinkedListNodeBase<T>::nextNode()
 template <class T>
 T& SimpleLinkedListNodeBase<T>::data()
 {
-	return *_node;
+        return _node;
 }
 
 template <class T>
 T* SimpleLinkedListNodeBase<T>::nodePtr()
 {
-	return _node;
+        return &_node;
+}
+
+template <class T>
+void SimpleLinkedListNodeBase<T>::setNode(T node)
+{
+    _node = node;
 }
 
 template <class T>
@@ -57,7 +62,7 @@ void SimpleLinkedListNodeBase<T>::setNextNode(SimpleLinkedListNodeBase<T>* next)
 }
 
 template <class T>
-SimpleLinkedListNodeBase<T> SimpleLinkedListNodeBase<T>::operator = (const SimpleLinkedListNodeBase<T>& node)
+SimpleLinkedListNodeBase<T>& SimpleLinkedListNodeBase<T>::operator = (const SimpleLinkedListNodeBase<T>& node)
 {
 	return SimpleLinkedListNodeBase<T>(node);
 }
@@ -67,28 +72,31 @@ SimpleLinkedListNodeBase<T> SimpleLinkedListNodeBase<T>::operator = (const Simpl
 
 template <class T>
 DoubleLinkedListNodeBase<T>::DoubleLinkedListNodeBase()
-						:SimpleLinkedListNodeBase<T>(),
-                                                _prior(NULL),
-                                                _next(NULL)
+    :_prior(NULL),
+    _next(NULL)
 {
 
 };
 
 template <class T>
-DoubleLinkedListNodeBase<T>::DoubleLinkedListNodeBase(T& node, DoubleLinkedListNodeBase<T>* next, DoubleLinkedListNodeBase<T>* prior)
-					: SimpleLinkedListNodeBase<T>(node,next),
-                                          _prior(prior),
-                                          _next(next)
+DoubleLinkedListNodeBase<T>::DoubleLinkedListNodeBase(T node, DoubleLinkedListNodeBase<T>* next, DoubleLinkedListNodeBase<T>* prior)
+    :_prior(prior),
+    _next(next)
 {
-
+    this->setNode(node);
 }
 
 template <class T>
 DoubleLinkedListNodeBase<T>::DoubleLinkedListNodeBase(const DoubleLinkedListNodeBase<T>& copy)
-						:SimpleLinkedListNodeBase<T>(copy)
 {
-	_prior = copy.priorNode();
+        _prior = copy.priorNode();
         this->_next = copy.nextNode();
+}
+
+template <class T>
+DoubleLinkedListNodeBase<T>::~DoubleLinkedListNodeBase()
+{
+
 }
 
 template <class T>
@@ -112,7 +120,26 @@ void DoubleLinkedListNodeBase<T>::setPriorNode(DoubleLinkedListNodeBase<T>* prio
 template <class T>
 void DoubleLinkedListNodeBase<T>::setNextNode(DoubleLinkedListNodeBase<T>* next)
 {
-        this->_next = next;
+        _next = next;
+}
+
+template <class T>
+T& DoubleLinkedListNodeBase<T>::data()
+{
+    return _node;
+}
+
+
+template <class T>
+T* DoubleLinkedListNodeBase<T>::nodePtr()
+{
+    return &_node;
+}
+
+template <class T>
+void DoubleLinkedListNodeBase<T>::setNode(T node)
+{
+    _node = node;
 }
 
 

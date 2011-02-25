@@ -6,11 +6,14 @@
  * version      : 0.1.0
  */
 
+#ifndef LINKLISTBASE_H
+#define LINKLISTBASE_H
 
 #include <stdlib.h>
 #include "linklistnodebases.h"
 
-#define LinkListNode DoubleLinkedListNodeBase<T>
+#define __LinkListNode DoubleLinkedListNodeBase<T>
+#define LinkListNode DoubleLinkedListNodeBase
 
 template <class T>
 class LinkListBase
@@ -20,11 +23,11 @@ public:
 	LinkListBase(void);
 
 	/// charas
-        LinkListNode* getHead();/*< returns the head node of list*/
-        LinkListNode* getTail();/*< returns the tail node of list*/
-        LinkListNode* getNext();
-        LinkListNode* getCurrent();
-        LinkListNode* at(int i);
+        __LinkListNode* getHead();/*< returns the head node of list*/
+        __LinkListNode* getTail();/*< returns the tail node of list*/
+        __LinkListNode* getNext();
+        __LinkListNode* getCurrent();
+        __LinkListNode* at(int i);
 	int count();
 	int currentIndex();
 	bool atFirst();
@@ -36,10 +39,10 @@ public:
 	bool removeFirst();
 	bool removeLast();
 
-        bool setCurrentNode(LinkListNode* newnode);
-        void insertFirst(LinkListNode* node);
-        bool insertAt(int index, LinkListNode* node);
-        void append(LinkListNode* node);
+        bool setCurrentNode(__LinkListNode* newnode);
+        void insertFirst(__LinkListNode* node);
+        bool insertAt(int index, __LinkListNode* node);
+        void append(__LinkListNode* node);
 
 	bool removeAt(int i);
 
@@ -50,12 +53,13 @@ public:
         void moveToPriorNode();
 
 protected:
-	void freeNode(LinkListNode* node);
-
+        void freeNode(__LinkListNode* node);
+        void traverse();
 private:
 	int _count;
 	int _index;
-	LinkListNode* _head;
-	LinkListNode* _tail;
-        LinkListNode* _current;
+        __LinkListNode* _head;
+        __LinkListNode* _tail;
+        __LinkListNode* _current;
 };
+#endif

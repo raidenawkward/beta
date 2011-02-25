@@ -13,12 +13,12 @@ DEFILES += DEBUG
 SOURCES += src/main.cpp \
 		src/linklistbase.cpp \
 		src/linklistnodebases.cpp \
-		src/linerlistbase.cpp \
+		src/linerlistbase.cpp
 
 HEADERS += include/global.h \
 		include/linklistbase.h  \
 		include/linklistnodebases.h  \
 		include/linerlistbase.h  \
-		include/defines.h \
+		include/defines.h
 
 message("beta project built")

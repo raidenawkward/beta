@@ -6,7 +6,8 @@
  * version      : 0.1.0
  */
 
-
+#ifndef LINKLISTNODEBASES_H
+#define LINKLISTNODEBASES_H
 
 ///
 //	class		: SimpleLinkedListNodeBase
@@ -22,22 +23,23 @@ class SimpleLinkedListNodeBase
 public:
 	/// construct and deconstruct funs
 	SimpleLinkedListNodeBase(void);
-	SimpleLinkedListNodeBase(T& node,SimpleLinkedListNodeBase<T>* next = NULL);
+        SimpleLinkedListNodeBase(T node,SimpleLinkedListNodeBase<T>* next = NULL);
 	SimpleLinkedListNodeBase(const SimpleLinkedListNodeBase<T>& copy);
 	~SimpleLinkedListNodeBase();
 
 	/// charas
-	SimpleLinkedListNodeBase<T>* nextNode();
+        SimpleLinkedListNodeBase* nextNode();
 	T& data();
 	T* nodePtr();
+        void setNode(T node);
 
 	/// operations
 	void setNextNode(SimpleLinkedListNodeBase<T>* next);
-	SimpleLinkedListNodeBase<T> operator = (const SimpleLinkedListNodeBase<T>& node);
+        SimpleLinkedListNodeBase& operator = (const SimpleLinkedListNodeBase<T>& node);
 
 private:
-	T* _node;
-	SimpleLinkedListNodeBase<T>* _next;
+        T _node;
+        SimpleLinkedListNodeBase* _next;
 };
 
 ///
@@ -46,22 +48,30 @@ private:
 //
 
 template <class T>
-class DoubleLinkedListNodeBase : public SimpleLinkedListNodeBase<T>
+class DoubleLinkedListNodeBase
 {
 public:
 	/// construct and deconstruct funs
-	DoubleLinkedListNodeBase(void);
-	DoubleLinkedListNodeBase(T& node, DoubleLinkedListNodeBase<T>* next, DoubleLinkedListNodeBase<T>* prior);
-	DoubleLinkedListNodeBase(const DoubleLinkedListNodeBase<T>& copy);
+        DoubleLinkedListNodeBase();
+        DoubleLinkedListNodeBase(T node, DoubleLinkedListNodeBase* next, DoubleLinkedListNodeBase* prior);
+        DoubleLinkedListNodeBase(const DoubleLinkedListNodeBase<T>& copy);
+        ~DoubleLinkedListNodeBase();
 
 	/// charas
-	DoubleLinkedListNodeBase<T>* priorNode();
-        DoubleLinkedListNodeBase<T>* nextNode();
+        DoubleLinkedListNodeBase* priorNode();
+        DoubleLinkedListNodeBase* nextNode();
 
 	/// operations
-	void setPriorNode(DoubleLinkedListNodeBase<T>* prior);
-        void setNextNode(DoubleLinkedListNodeBase<T>* next);
+        void setPriorNode(DoubleLinkedListNodeBase* prior);
+        void setNextNode(DoubleLinkedListNodeBase* next);
+
+        T& data();
+        T* nodePtr();
+        void setNode(T node);
 private:
-	DoubleLinkedListNodeBase<T>* _prior;
-        SimpleLinkedListNodeBase<T>* _next;
+        DoubleLinkedListNodeBase* _prior;
+        DoubleLinkedListNodeBase* _next;
+        T _node;
 };
+//#include "src/linklistnodebases.cpp"
+#endif
