@@ -323,6 +323,7 @@ int main()
     linklist.append(node);
     linklist.append(node2);
     linklist.append(node3);
+    linklist.removeAt(1);
 
     for (int i = 0; i < linklist.count(); ++i)
         printf("index %d : %d\n",i,linklist.at(i)->data());

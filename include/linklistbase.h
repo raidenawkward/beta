@@ -23,8 +23,8 @@ public:
 	LinkListBase(void);
 
 	/// charas
-        __LinkListNode* getHead();/*< returns the head node of list*/
-        __LinkListNode* getTail();/*< returns the tail node of list*/
+        __LinkListNode* getHead();/*!< returns the head node of list*/
+        __LinkListNode* getTail();/*!< returns the tail node of list*/
         __LinkListNode* getNext();
         __LinkListNode* getCurrent();
         __LinkListNode* at(int i);

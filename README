@@ -4,6 +4,39 @@ raiden
 20110208
 #####################################################
 
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
+				Conventions
+
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
+1. class names begin with an uppercase letter;
+	ex: class Mail
+2. fucntion names begin with a lowercase letter;
+	ex: void goHome();
+3. based on the above elements, capitalize first letter of the word follow-up;
+4. name of constant uses uppercase letters;
+	ex: #define BIRTHDAY 20110308
+5. it should be a noun or a noun phrase for a class name;
+	ex: class DreamMaker
+6. it should be a verb for verb phrase for a function name;
+	ex: bool makeMeHappy();
+7. every bool variant should be looks like a sentence;
+	ex: bool isTimeUp; bool hasCheckedOut = true;
+8. external prefix would be added before an member param;
+	ex: m_sourceList; _isEngaged;
+9. static members under item 8: sm_sourceList; s_isEngaged;
+10. function name for getters:
+	bools : bool isEngaged();
+	non-bools: char* getNewsHeader();
+			   int newsHeader();
+11. function name for setters:
+	setSeedUrl(char* url);
+12. comments: follow 'doxygen'
+
+
+
+
 framework:
 global.h -- global setting for structures
 linerlistbase.h -- sequence list support
