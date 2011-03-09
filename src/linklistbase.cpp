@@ -101,17 +101,10 @@ bool LinkListBase<T>::isEmpty()
 template <class T>
 void LinkListBase<T>::clear()
 {
-    _current = _head;
-    do
+    while (this->count())
     {
-        if (_current)
-        {
-            _current = _current->nextNode();
-            freeNode(_current->priorNode());
-        }
+        this->removeLast();
     }
-    while (_current != _tail);
-    freeNode(_tail);
     this->_head = NULL;
     this->_tail = _head;
     this->_current = _head;
@@ -241,8 +234,11 @@ bool LinkListBase<T>::removeAt(int i)
     if (i < 0 || i > _count -1)
         return false;
     __LinkListNode* tmp_node = this->at(i);
-    tmp_node->nextNode()->setPriorNode(tmp_node->priorNode());
-    tmp_node->priorNode()->setNextNode(tmp_node->nextNode());
+
+    if (tmp_node->nextNode())
+        tmp_node->nextNode()->setPriorNode(tmp_node->priorNode());
+    if (tmp_node->priorNode())
+        tmp_node->priorNode()->setNextNode(tmp_node->nextNode());
     freeNode(tmp_node);
     --_count;
     return true;
@@ -336,8 +332,9 @@ int main()
     linklist.append(node);
     linklist.append(node2);
     linklist.append(node3);
-    linklist.removeAt(1);
-    linklist.removeAt(1);
+    linklist.removeFirst();
+    linklist.removeFirst();
+    linklist.removeFirst();
     for (int i = 0; i < linklist.count(); ++i)
         printf("index %d : %d\n",i,linklist.at(i)->data());
     linklist.clear();
