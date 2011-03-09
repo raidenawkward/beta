@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 #define TEST
 #ifndef TEST
 int main(int argc, char** argv)

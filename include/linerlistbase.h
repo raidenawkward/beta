@@ -5,6 +5,10 @@
  * date         : 2011-02-09
  * version      : 1.1.1
  */
+#ifndef _LINERLISTBASE_H
+#define _LINERLISTBASE_H
+
+
 
 #include<stdlib.h>
 
@@ -57,3 +61,5 @@ private:
 	int _length;//list length
 	int _size;//list size
 };
+
+#endif //_LINERLISTBASE_H

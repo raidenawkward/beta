@@ -128,6 +128,9 @@ bool LinkListBase<T>::removeFirst()
         clear();
     else
     {
+        --_count;
+        if (_index > _count -1)
+            -- _index;
         _head = _head->nextNode();
         freeNode(_head->priorNode());
     }
@@ -140,9 +143,19 @@ bool LinkListBase<T>::removeLast()
     if (this->isEmpty())
         return false;
     if (this->count() == 1)
-        clear();
+    {
+        freeNode(_head);
+        --_count;
+        _index = 0;
+        this->_head = NULL;
+        this->_tail = _head;
+        this->_current = _head;
+    }
     else
     {
+        --_count;
+        if (_index > _count -1)
+            -- _index;
         _tail = _tail->priorNode();
         freeNode(_tail->nextNode());
     }
@@ -324,7 +337,10 @@ int main()
     linklist.append(node2);
     linklist.append(node3);
     linklist.removeAt(1);
-
+    linklist.removeAt(1);
+    for (int i = 0; i < linklist.count(); ++i)
+        printf("index %d : %d\n",i,linklist.at(i)->data());
+    linklist.clear();
     for (int i = 0; i < linklist.count(); ++i)
         printf("index %d : %d\n",i,linklist.at(i)->data());
     return 0;

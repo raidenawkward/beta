@@ -3,22 +3,24 @@
 ######################################################################
 
 TEMPLATE = app
-TARGET = test 
+TARGET = test
 DEPENDPATH += . src
-INCLUDEPATH += .
+INCLUDEPATH += . ../include
 DESTDIR = bin
 DEFILES += DEBUG
 
 # Input
-SOURCES += src/main.cpp \
-		src/linklistbase.cpp \
+SOURCES +=      src/linklistbase.cpp \
+                src/main.cpp \
 		src/linklistnodebases.cpp \
-		src/linerlistbase.cpp
+		src/linerlistbase.cpp \
+                src/linkstackbase.cpp \
 
 HEADERS += include/global.h \
 		include/linklistbase.h  \
 		include/linklistnodebases.h  \
 		include/linerlistbase.h  \
-		include/defines.h
+		include/defines.h \
+                include/linkstackbase.h \
 
 message("beta project built")
