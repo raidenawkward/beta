@@ -318,7 +318,7 @@ void LinkListBase<T>::traverse()
 }
 
 /// main function for test
-#define TEST_LINKLIST
+//#define TEST_LINKLIST
 #ifdef TEST_LINKLIST
 #include <stdio.h>
 #include <string.h>
